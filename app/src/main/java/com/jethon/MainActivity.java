@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //1.初始化Volley
+        //1.初始化RxHttp
         RxHttp.init(getApplicationContext(), BuildConfig.DEBUG, new BaseParameterGenerator(), "");
         tv = (TextView) findViewById(R.id.tv);
         findViewById(R.id.btn).setOnClickListener(this);
