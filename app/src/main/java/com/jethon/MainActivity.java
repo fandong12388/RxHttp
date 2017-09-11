@@ -59,5 +59,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
-
+    @Override
+    protected void onDestroy() {
+        //资源回收
+        RxHttp.release();
+        super.onDestroy();
+    }
 }
