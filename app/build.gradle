@@ -1,0 +1,57 @@
+apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
+
+def releaseTime() {
+    return new Date().format("yyyy-MM-dd", TimeZone.getDefault())
+}
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+
+    lintOptions {
+        abortOnError false
+    }
+
+    defaultConfig {
+        applicationId "com.jethon"
+        minSdkVersion 15
+        targetSdkVersion 22
+        versionCode 100
+        versionName "1.0"
+    }
+
+    compileOptions {
+        encoding "UTF-8"
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
+    }
+
+}
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.jakewharton:butterknife:5.1.1'
+    compile 'io.reactivex:rxjava:1.0.14'
+    compile 'io.reactivex:rxandroid:1.0.1'
+    compile project(':rx-http')
+}
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
